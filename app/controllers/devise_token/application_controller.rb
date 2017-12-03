@@ -1,7 +1,6 @@
 module DeviseToken
   class ApplicationController < DeviseController
     include DeviseToken::Concerns::AuthenticateToken
-    include DeviseToken::Concerns::ResourceFinder
 
     before_action :set_default_format
 
