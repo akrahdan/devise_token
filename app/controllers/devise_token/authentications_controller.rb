@@ -1,6 +1,5 @@
 module DeviseToken
   class AuthenticationsController < DeviseToken::ApplicationController
-    before_action :authenticate_token!
     before_action :set_user_by_token, :only => [:destroy]
     after_action :reset_session, :only => [:destroy]
 
