@@ -2,7 +2,7 @@ module DeviseToken
   class RegistrationsController < DeviseToken::ApplicationController
     before_action :validate_sign_up_params, :only => :create
     before_action :validate_account_update_params, :only => :update
-    
+
    def create
      @resource            = resource_class.new(sign_up_params.except(:confirm_success_url))
      @resource.provider   = provider
@@ -110,7 +110,7 @@ module DeviseToken
      def render_create_success
        render json: {
          status: 'success',
-         header: auth_token
+         header: auth_token,
          data:   resource_data
        }
      end
