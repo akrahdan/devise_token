@@ -1,5 +1,4 @@
 require "devise_token/rails/routes"
-require "devise_token/authenticable"
 
 module DeviseToken
   class Engine < ::Rails::Engine

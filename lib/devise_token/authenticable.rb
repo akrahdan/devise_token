@@ -1,5 +1,4 @@
-module DeviseToken
-  class Authenticable
+module DeviseToken::Authenticable
 
     def authenticate_auth resource_class
       if token
@@ -21,6 +20,4 @@ module DeviseToken
 
     end
 
-
-  end
 end
