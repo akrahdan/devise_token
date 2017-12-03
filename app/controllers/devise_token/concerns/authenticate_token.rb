@@ -1,7 +1,7 @@
 module DeviseToken::Concerns::AuthenticateToken
   extend ActiveSupport::Concern
   include DeviseToken::Controllers::Helpers
-  include DeviseToken::Authenticable
+  include ::DeviseToken::Authenticable
 
 
 
