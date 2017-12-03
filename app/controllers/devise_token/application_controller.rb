@@ -2,7 +2,6 @@ module DeviseToken
   class ApplicationController < DeviseController
 
     before_action :set_default_format
-    before_action :authenticate_token!
 
     attri_reader :current_user
 
@@ -60,18 +59,21 @@ module DeviseToken
         request.format = :json
       end
 
-      def authenticate_token!
-        payload = JsonWebToken.decode(auth_token)
-        @current_user = User.find(payload["sub"])
-      rescue JWT::ExpiredSignature
-        render json: { errors: ["Auth token has expired"]}, status: :unauthorized
-      end
-      rescue JWT::DecodeError
-        render json: { errors: ["Invalid auth token"]}, status: :unauthorized
+      def auth_token
+       if resource.respond_to? :auth_response_token
+         DeviseToken.JsonWebToken.new payload: resource.auth_response_token
+       else
+         DeviseToken.JsonWebToken.new payload: { sub: resource.id }
+       end
       end
 
-      def auth_token
-        @auth_token = request.headers.fetch("Authorization", "").split(" ").last
+      def resource
+       @resource ||=
+         if resource_class.respond_to? :auth_request_payload
+           resource_class.auth_request_payload request
+         else
+           resource_class.find_by email: resource_params[:email]
+         end
       end
 
   end

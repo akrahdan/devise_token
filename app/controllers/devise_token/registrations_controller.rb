@@ -1,8 +1,8 @@
 module DeviseToken
   class RegistrationsController < DeviseToken::ApplicationController
-    before_action :authenticate_token!
     before_action :validate_sign_up_params, :only => :create
     before_action :validate_account_update_params, :only => :update
+    
    def create
      @resource            = resource_class.new(sign_up_params.except(:confirm_success_url))
      @resource.provider   = provider
@@ -51,18 +51,10 @@ module DeviseToken
            })
 
          else
-           # email auth has been bypassed, authenticate user
-           @client_id = SecureRandom.urlsafe_base64(nil, false)
-           @token     = SecureRandom.urlsafe_base64(nil, false)
-
-           @resource.tokens[@client_id] = {
-             token: BCrypt::Password.create(@token),
-             expiry: (Time.now + @resource.token_lifespan).to_i
-           }
 
            @resource.save!
 
-           update_auth_header
+
          end
          render_create_success
        else
@@ -75,18 +67,6 @@ module DeviseToken
      end
    end
 
-   def update
-     if @resource
-       if @resource.send(resource_update_method, account_update_params)
-         yield @resource if block_given?
-         render_update_success
-       else
-         render_update_error
-       end
-     else
-       render_update_error_user_not_found
-     end
-   end
 
    def destroy
      if @resource
@@ -130,6 +110,7 @@ module DeviseToken
      def render_create_success
        render json: {
          status: 'success',
+         header: auth_token
          data:   resource_data
        }
      end

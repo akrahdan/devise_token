@@ -89,13 +89,15 @@ module DeviseToken
       }
     end
 
+
+
     def render_new_error
       render_error(405, I18n.t("devise_token.sessions.not_supported"))
     end
 
     def render_create_success
       render json: {
-        data: resource_data(resource_json: JsonWebToken.encode(sub: @resource.id)
+        data: resource_data(resource_json: resource)
       }
     end
 

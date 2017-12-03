@@ -8,13 +8,17 @@ module DeviseToken
     end
 
     def token
-      params[:auth_token] || auth_token
+      params[:auth_token] || auth_token_request
     end
 
-    def auth_token
+    def auth_token_request
       unless request.headers['Authorization'].nil?
         request.headers.fetch("Authorization", "").split(" ").last
       end
+    end
+
+    def auth_token_response
+
     end
 
 

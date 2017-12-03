@@ -19,10 +19,6 @@ module DeviseToken::Concerns::AuthenticateToken
     # user has already been found and authenticated
     return @resource if @resource && @resource.is_a?(rc)
 
-
   end
-
-
-
 
 end

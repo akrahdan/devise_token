@@ -1,7 +1,7 @@
 module DeviseToken
   class TokenValidationsController < DeviseToken::ApplicationController
     skip_before_action :assert_is_devise_resource!, :only => [:validate_token]
-    before_action :set_user_by_token, :only => [:validate_token]
+  
 
     def validate_token
       # @resource will have been set by set_user_token concern
