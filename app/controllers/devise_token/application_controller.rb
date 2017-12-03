@@ -1,6 +1,6 @@
 module DeviseToken
   class ApplicationController < DeviseController
-    include DeviseToken::Concerns::AuthenticateToken
+    include ::DeviseToken::Concerns::AuthenticateToken
 
     before_action :set_default_format
 
