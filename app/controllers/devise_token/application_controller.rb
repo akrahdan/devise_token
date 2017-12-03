@@ -3,7 +3,6 @@ module DeviseToken
 
     before_action :set_default_format
 
-    attri_reader :current_user
 
     def resource_data(opts={})
       response_data = opts[:resource_json] || @resource.as_json
