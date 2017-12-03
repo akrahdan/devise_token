@@ -9,7 +9,7 @@ module ActionDispatch::Routing
       authentications_ctrl   = opts[:controllers][:sessions] || "devise_token/sessions"
       registrations_ctrl     = opts[:controllers][:registrations] || "devise_token/registrations"
       confirmations_ctrl     = opts[:controllers][:confirmations] || "devise_token/confirmations"
-
+      token_validations_ctrl = opts[:controllers][:token_validations] || "devise_token/token_validations"
 
       # define devise controller mappings
       controllers = {:sessions           => authentications_ctrl,
