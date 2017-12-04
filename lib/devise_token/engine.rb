@@ -9,7 +9,8 @@ module DeviseToken
     end
   end
 
-  mattr_accessor :change_headers_on_each_request,
+  mattr_accessor :token_audience,
+                 :change_headers_on_each_request,
                  :token_lifespan,
                  :default_confirm_success_url,
                  :default_password_reset_url,
@@ -21,6 +22,7 @@ module DeviseToken
                  :token_secret_signature_key,
                  :token_signature_algorithm
 
+  self.token_audience = nil
   self.change_headers_on_each_request       = true
   self.token_lifespan                       = 2.weeks
   self.default_confirm_success_url          = nil
