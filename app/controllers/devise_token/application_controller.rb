@@ -58,9 +58,9 @@ module DeviseToken
 
       def auth_token
        if resource.respond_to? :auth_response_token
-         DeviseToken.JsonWebToken.new payload: resource.auth_response_token
+         DeviseToken::JsonWebToken.new payload: resource.auth_response_token
        else
-         DeviseToken.JsonWebToken.new payload: { sub: resource.id }
+         DeviseToken::JsonWebToken.new payload: { sub: resource.id }
        end
       end
 
