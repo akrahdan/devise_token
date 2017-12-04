@@ -1,3 +1,4 @@
+require "jwt"
 module DeviseToken
   class JsonWebToken
 
