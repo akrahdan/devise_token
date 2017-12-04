@@ -7,9 +7,6 @@ module DeviseToken
 
     def resource_data(opts={})
       response_data = opts[:resource_json] || @resource.as_json
-      if json_api?
-        response_data['type'] = @resource.class.name.parameterize
-      end
       response_data
     end
 
