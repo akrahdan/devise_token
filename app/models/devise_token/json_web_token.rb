@@ -52,11 +52,11 @@ module DeviseToken
     end
 
     def token_lifetime
-      DeviseToken.token_lifetime.from_now.to_i if verify_lifetime?
+      DeviseToken.token_lifespan.from_now.to_i if verify_lifetime?
     end
 
     def verify_lifetime?
-      !DeviseToken.token_lifetime.nil?
+      !DeviseToken.token_lifespan.nil?
     end
 
     def verify_claims
