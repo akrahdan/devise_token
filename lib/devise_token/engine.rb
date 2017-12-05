@@ -21,6 +21,7 @@ module DeviseToken
                  :default_callbacks,
                  :token_secret_signature_key,
                  :token_signature_algorithm
+                 :token_public_key
 
   self.token_audience = nil
   self.change_headers_on_each_request       = true
@@ -34,6 +35,7 @@ module DeviseToken
   self.default_callbacks                    = true
   self.token_secret_signature_key           = -> { Rails.application.secrets.secret_key_base }
   self.token_signature_algorithm            = 'HS256'
+  self.token_public_key                     = nil
 
 
   def self.setup(&block)
