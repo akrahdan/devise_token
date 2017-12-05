@@ -1,7 +1,5 @@
 module DeviseToken
   class AuthenticationsController < DeviseToken::ApplicationController
-    before_action :set_user_by_token, :only => [:destroy]
-    after_action :reset_session, :only => [:destroy]
 
     def new
       render_new_error
@@ -40,23 +38,7 @@ module DeviseToken
       end
     end
 
-    def destroy
-      # remove auth instance variables so that after_action does not run
-      user = remove_instance_variable(:@resource) if @resource
-      client_id = remove_instance_variable(:@client_id) if @client_id
-      remove_instance_variable(:@token) if @token
 
-      if user && client_id && user.tokens[client_id]
-        user.tokens.delete(client_id)
-        user.save!
-
-        yield user if block_given?
-
-        render_destroy_success
-      else
-        render_destroy_error
-      end
-    end
 
     protected
 
@@ -96,7 +78,7 @@ module DeviseToken
 
     def render_create_success
       render json: {
-        data: resource_data(resource_json: resource)
+        data: resource_data
       }
     end
 
