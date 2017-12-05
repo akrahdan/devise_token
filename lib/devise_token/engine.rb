@@ -20,7 +20,7 @@ module DeviseToken
                  :remove_tokens_after_password_reset,
                  :default_callbacks,
                  :token_secret_signature_key,
-                 :token_signature_algorithm
+                 :token_signature_algorithm,
                  :token_public_key
 
   self.token_audience = nil
