@@ -2,7 +2,7 @@ module DeviseToken::Authenticable
 
     def authenticate_auth resource_class
       if token
-        DeviseToken.JsonWebToken.new(token: token).current_resource(resource_class)
+        DeviseToken::JsonWebToken.new(token: token).current_resource(resource_class)
       end
     end
 
