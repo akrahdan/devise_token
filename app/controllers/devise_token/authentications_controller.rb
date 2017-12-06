@@ -46,31 +46,6 @@ module DeviseToken
       resource_params[:password] && key && val
     end
 
-    def get_auth_params
-      auth_key = nil
-      auth_val = nil
-
-      # iterate thru allowed auth keys, use first found
-      resource_class.authentication_keys.each do |k|
-        if resource_params[k]
-          auth_val = resource_params[k]
-          auth_key = k
-          break
-        end
-      end
-
-      # honor devise configuration for case_insensitive_keys
-      if resource_class.case_insensitive_keys.include?(auth_key)
-        auth_val.downcase!
-      end
-
-      return {
-        key: auth_key,
-        val: auth_val
-      }
-    end
-
-
 
     def render_new_error
       render_error(405, I18n.t("devise_token.sessions.not_supported"))
@@ -78,6 +53,8 @@ module DeviseToken
 
     def render_create_success
       render json: {
+        status: 'success',
+        header: auth_token,
         data: resource_data
       }
     end
