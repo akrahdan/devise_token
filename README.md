@@ -2,7 +2,7 @@
 A lightweight authentication gem based on devise and jwt gems.
 
 ## Description
-DeviseToken is stripped down version of devise_token_auth, which removes the  oauth and token implementation  and implements jwt for authentication.
+DeviseToken is a stripped down version of devise_token_auth, which removes the  oauth and token implementation  in devise_token_auth and replaces them with jwt for authentication.
 
 ### What are JSON Web Tokens?
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   include DeviseToken::Concerns::Authenticable
 end
 ```
-This will help you scope your resources by calling `authenticate_user` as a before_action
+This will help you scope your resources by calling `authenticate_user!` as a before_action
 inside your controllers:
 ```ruby
 class TasksController < ApplicationController
@@ -67,4 +67,3 @@ This will create the following:
 Contribution directions go here.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
