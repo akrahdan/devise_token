@@ -11,11 +11,11 @@ DeviseToken is a stripped down version of devise_token_auth, which removes the  
 
 ## Usage
 
-Include the `DeviseToken::Concerns::Authenticable` module in your base controller, ie  `ApplicationController` if it is not included by default.
+Include the `DeviseToken::Concerns::AuthenticateToken` module in your base controller, ie  `ApplicationController` if it is not included by default.
 
 ```ruby
 class ApplicationController < ActionController::API
-  include DeviseToken::Concerns::Authenticable
+  include DeviseToken::Concerns::AuthenticateToken
 end
 ```
 This will help you scope your resources by calling `authenticate_user!` as a before_action
