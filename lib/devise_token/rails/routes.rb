@@ -23,7 +23,7 @@ module ActionDispatch::Routing
         :module      => :devise,
         :path        => "#{opts[:at]}",
         :controllers => controllers,
-        :skip        => opts[:skip]
+        :skip        => opts[:skip] + [:omniauth_callbacks]
 
       unnest_namespace do
         # get full url path as if it were namespaced
