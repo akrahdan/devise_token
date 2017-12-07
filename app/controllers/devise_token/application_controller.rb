@@ -1,7 +1,6 @@
 module DeviseToken
   class ApplicationController < DeviseController
-    skip_before_action :verify_authenticity_token
-    protect_from_forgery prepend: true, with: :exception
+    protect_from_forgery with: :null_session
     include ::DeviseToken::Concerns::AuthenticateToken
 
     before_action :set_default_format
