@@ -44,10 +44,19 @@ module DeviseToken
             end
           end
 
+          def #{mapping}_signed_in?
+            !!current_#{mapping}
+          end
 
           def current_#{mapping}
             @current_#{mapping} ||= authenticate_token(:#{mapping})
           end
+
+
+          def #{mapping}_session
+            current_#{mapping} && warden.session(:#{mapping})
+          end
+
 
           def render_authenticate_error
             return render json: {
@@ -58,7 +67,7 @@ module DeviseToken
 
         ActiveSupport.on_load(:action_controller) do
           if respond_to?(:helper_method)
-            helper_method "current_#{mapping}", "#{mapping}_signed_in?", "render_authenticate_error"
+            helper_method "current_#{mapping}", "#{mapping}_signed_in?", "#{mapping}_session", "render_authenticate_error"
           end
         end
       end
