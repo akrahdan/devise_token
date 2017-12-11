@@ -2,6 +2,7 @@ module DeviseToken
   class ApplicationController < DeviseController
     protect_from_forgery with: :null_session
     include ::DeviseToken::Concerns::AuthenticateToken
+    include DeviseToken::Concerns::ResourceFinder
 
     before_action :set_default_format
 
