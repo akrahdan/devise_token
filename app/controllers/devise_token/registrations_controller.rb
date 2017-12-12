@@ -93,7 +93,7 @@ module DeviseToken
          status: 'error',
          data:   resource_data
        }
-       message = I18n.t("devise_token_auth.registrations.missing_confirm_success_url")
+       message = I18n.t("devise_token.registrations.missing_confirm_success_url")
        render_error(422, message, response)
      end
 
@@ -102,7 +102,7 @@ module DeviseToken
          status: 'error',
          data:   resource_data
        }
-       message = I18n.t("devise_token_auth.registrations.redirect_url_not_allowed", redirect_url: @redirect_url)
+       message = I18n.t("devise_token.registrations.redirect_url_not_allowed", redirect_url: @redirect_url)
        render_error(422, message, response)
      end
 
@@ -127,7 +127,7 @@ module DeviseToken
          status: 'error',
          data:   resource_data
        }
-       message = I18n.t("devise_token_auth.registrations.email_already_exists", email: @resource.email)
+       message = I18n.t("devise_token.registrations.email_already_exists", email: @resource.email)
        render_error(422, message, response)
      end
 
@@ -146,18 +146,18 @@ module DeviseToken
      end
 
      def render_update_error_user_not_found
-       render_error(404, I18n.t("devise_token_auth.registrations.user_not_found"), { status: 'error' })
+       render_error(404, I18n.t("devise_token.registrations.user_not_found"), { status: 'error' })
      end
 
      def render_destroy_success
        render json: {
          status: 'success',
-         message: I18n.t("devise_token_auth.registrations.account_with_uid_destroyed", uid: @resource.uid)
+         message: I18n.t("devise_token.registrations.account_with_uid_destroyed", uid: @resource.uid)
        }
      end
 
      def render_destroy_error
-       render_error(404, I18n.t("devise_token_auth.registrations.account_to_destroy_not_found"), { status: 'error' })
+       render_error(404, I18n.t("devise_token.registrations.account_to_destroy_not_found"), { status: 'error' })
      end
 
     private
