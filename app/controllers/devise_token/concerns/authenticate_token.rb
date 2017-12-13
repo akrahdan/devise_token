@@ -12,9 +12,9 @@ module DeviseToken::Concerns::AuthenticateToken
   def authenticate_token(mapping=nil)
     # determine target authentication class
     rc = resource_class(mapping)
-    @token = token
+    #@token = token
 
-    return false unless @token
+    #return false unless @token
     # no default user defined
     return unless rc
     @resource =  authenticate_auth(rc)
