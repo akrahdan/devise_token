@@ -38,7 +38,7 @@ module DeviseToken
         mapping = mapping.name
 
         class_eval <<-METHODS, __FILE__, __LINE__ + 1
-          def authenticate_#{mapping}_token!(opts={})
+          def authenticate_#{mapping}!(opts={})
             unless current_#{mapping}
               render_authenticate_error
             end
