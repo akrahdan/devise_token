@@ -1,7 +1,7 @@
 module DeviseToken::Authenticable
 
     def authenticate_auth resource_class
-      if token
+      unless token.nil?
         DeviseToken::JsonWebToken.new(token: token).current_resource(resource_class)
       else
          resource_class.find_by(access_token: access_token)
@@ -10,7 +10,7 @@ module DeviseToken::Authenticable
 
 
     def token
-      params[:auth_token].presence || auth_token_request
+      params[:auth_token] || auth_token_request
     end
 
     def access_token
